@@ -633,3 +633,8 @@ verificações de consistência global.
   Larissa `[09:24]`). Detalhe registrado em `.notas/readme-processo.md`.
 - Extração feita diretamente (sem subagente), para manter controle fino sobre a regra
   de parar e perguntar em casos ambíguos.
+- **Correção pontual pós-fase** (`fix/gate-confirmar-commit`, PR #2): o usuário pediu
+  que, de agora em diante, todo `git commit` passe por confirmação explícita antes de
+  acontecer (não só o push/PR). O commit que registrava essa regra (`66c25d9`) foi
+  pushado depois que o usuário já tinha feito o merge do PR #1, então ficou de fora de
+  `main` — corrigido via cherry-pick numa branch `fix/`.
