@@ -25,8 +25,10 @@
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** commitar a Fase 1, pedir autorização, push + abrir PR (via GitHub MCP,
-agora conectado). Depois do merge, iniciar a Fase 2 em uma sessão nova.
+**Próximo passo:** reiniciar o Claude Code (para o GitHub MCP carregar), confirmar com
+`/mcp` que `github` está conectado, e abrir o PR da Fase 1 usando o corpo já pronto em
+`.notas/pr-fase-1.md` — branch `fase-1/exploracao` já commitada e com push feito para
+`origin`. Depois do merge, iniciar a Fase 2 em uma sessão nova.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
