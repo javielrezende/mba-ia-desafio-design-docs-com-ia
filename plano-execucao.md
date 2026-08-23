@@ -100,8 +100,11 @@ stubs de 3 linhas; `docs/adrs/` contém apenas um `README.md` explicativo. Nada 
    com `*` (auto-ignorado). O `.gitignore` do projeto não é tocado e `git status` fica limpo.
 7. **Duas perguntas em toda fase** (ver blocos "Gate" abaixo): a skill a usar, e o incremento do README.
 8. **Uma fase por sessão, uma branch por fase, um PR por fase.** Ver
-   [Convenções de Git](#convenções-de-git). Nada é enviado ao GitHub sem sua autorização
-   explícita, e todo PR aponta para `main` **deste** repositório — nunca para o fork de origem.
+   [Convenções de Git](#convenções-de-git). Nenhum `git commit` acontece sem sua
+   confirmação explícita das alterações feitas (ver [Gate de fechamento](#gate-padrão-de-fechamento-de-fase),
+   passo 5), e nada é enviado ao GitHub sem sua autorização explícita separada para
+   push/PR — são duas confirmações distintas. Todo PR aponta para `main` **deste**
+   repositório — nunca para o fork de origem.
 9. **Ao fim da fase:** atualizar a tabela [Estado atual](#estado-atual) e o bloco de notas
    da fase neste arquivo.
 
@@ -325,16 +328,23 @@ o que vai em cada uma, com as origens) para aprovação. Só depois escrever.
    > O que dessa fase entra no README do processo? Sugiro registrar: *(prompts usados,
    > iterações/correções, decisões tomadas)*. Confirma, ajusta ou deixa para depois?
 4. Atualizar [Estado atual](#estado-atual) e o bloco da fase neste arquivo.
-5. **Commitar** na branch da fase, seguindo o [padrão de commit](#padrão-de-commit).
-6. **Pedir autorização para enviar:**
+5. **Pedir confirmação antes de commitar:** com as alterações da fase já escritas (mas
+   ainda não commitadas), apresentar o que foi feito — arquivos alterados/criados,
+   `git status`/`git diff --stat` — e perguntar:
+   > As alterações da Fase N estão prontas (lista acima). Posso commitar?
+   Sem o seu "pode", nenhum `git commit` acontece. Isso vale a cada commit da fase,
+   não só no fechamento — se a fase gerar mais de um commit, cada um passa por essa
+   confirmação antes de ser criado.
+6. **Commitar** na branch da fase, seguindo o [padrão de commit](#padrão-de-commit).
+7. **Pedir autorização para enviar:**
    > A Fase N está fechada e commitada em `fase-N/<slug>`. Posso fazer o push e abrir
    > o PR contra `javielrezende/mba-ia-desafio-design-docs-com-ia` → `main`?
    Sem o seu "pode", nada sai da máquina. Nem `push`, nem PR.
-7. Após autorização: `git push`, abrir o PR via **GitHub MCP** com `owner`/`repo`/`base`
+8. Após autorização: `git push`, abrir o PR via **GitHub MCP** com `owner`/`repo`/`base`
    explícitos (ver [Abertura do PR](#abertura-do-pr)) usando o
    [template](#template-do-corpo-do-pr), e registrar o número do PR na coluna `PR`
    da tabela de [Estado atual](#estado-atual).
-8. Após o seu merge: voltar para `main`, `pull --ff-only`, e a próxima fase parte daí.
+9. Após o seu merge: voltar para `main`, `pull --ff-only`, e a próxima fase parte daí.
 
 ---
 
@@ -623,3 +633,8 @@ verificações de consistência global.
   Larissa `[09:24]`). Detalhe registrado em `.notas/readme-processo.md`.
 - Extração feita diretamente (sem subagente), para manter controle fino sobre a regra
   de parar e perguntar em casos ambíguos.
+- **Correção pontual pós-fase** (`fix/gate-confirmar-commit`, PR #2): o usuário pediu
+  que, de agora em diante, todo `git commit` passe por confirmação explícita antes de
+  acontecer (não só o push/PR). O commit que registrava essa regra (`66c25d9`) foi
+  pushado depois que o usuário já tinha feito o merge do PR #1, então ficou de fora de
+  `main` — corrigido via cherry-pick numa branch `fix/`.
