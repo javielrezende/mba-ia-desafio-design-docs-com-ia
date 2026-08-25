@@ -13,7 +13,7 @@
 |---|---|---|---|---|---|
 | 0 | Planejamento | ✅ concluída | `main` (working tree) | `plano-execucao.md` | — |
 | 1 | Exploração (código + transcrição) | ✅ concluída (PR aberto) | `fase-1/exploracao` | `.notas/base-factual.md` | [#1](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/1) |
-| 2 | ADRs | ⬜ pendente | `fase-2/adrs` | `docs/adrs/ADR-*.md` | — |
+| 2 | ADRs | ✅ concluída | `fase-2/adrs` | `docs/adrs/ADR-*.md` | — |
 | 3 | RFC | ⬜ pendente | `fase-3/rfc` | `docs/RFC.md` | — |
 | 4 | FDD | ⬜ pendente | `fase-4/fdd` | `docs/FDD.md` | — |
 | 5 | PRD | ⬜ pendente | `fase-5/prd` | `docs/PRD.md` | — |
@@ -25,17 +25,16 @@
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** aguardar revisão e merge do [PR #1](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/1)
-pelo usuário. Depois do merge: `git checkout main && git pull --ff-only origin main`,
-e iniciar a Fase 2 (ADRs) em uma sessão nova.
+**Próximo passo:** aguardar sua confirmação para commitar a Fase 2, depois autorização para
+push/PR. Após o merge: `git checkout main && git pull --ff-only origin main`, e iniciar a
+Fase 3 (RFC) em uma sessão nova.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
 `claude mcp add` executado e `claude mcp list` confirma `github` conectado. Os nomes exatos
 das ferramentas MCP ainda serão confirmados na hora de abrir o PR.
 
-**Decisões pendentes (não resolver sozinho):**
-- [ ] *(Fase 2)* Decisões técnicas secundárias (formato de payload, timeouts, headers) viram ADRs adicionais ou ficam só no FDD? → gate na Fase 2. Candidatas já listadas em `.notas/base-factual.md`, seção 1.4.
+**Decisões pendentes (não resolver sozinho):** nenhuma no momento.
 
 **Decisões já resolvidas nesta sessão:**
 - [x] `plano-execucao.md` — versionado, commitado no PR da Fase 1.
@@ -638,3 +637,30 @@ verificações de consistência global.
   acontecer (não só o push/PR). O commit que registrava essa regra (`66c25d9`) foi
   pushado depois que o usuário já tinha feito o merge do PR #1, então ficou de fora de
   `main` — corrigido via cherry-pick numa branch `fix/`.
+
+### Fase 2 — ADRs
+- O usuário trouxe três subagentes prontos (`.claude/agents/adr-analyzer.md`,
+  `adr-generator.md`, `adr-linker.md`), de outro projeto, pedindo avaliação de encaixe
+  antes de rodar. Após leitura completa dos três, avaliação foi de não usá-los: são
+  desenhados para arqueologia de código sobre um codebase já existente e não documentado
+  (git log/git blame, scoring por Step-0 categories), enquanto nossa fonte é uma
+  transcrição de reunião com decisões já explícitas para uma feature que ainda não existe
+  no código; além disso o `adr-generator` grava em MADR de 7 seções sem atribuição a
+  falante/timestamp, incompatível com o formato de 5 seções e a rastreabilidade
+  `[hh:mm] Nome` já fixados neste plano. Decisão do usuário, com essa avaliação como
+  base: escrever os ADRs diretamente a partir de `.notas/base-factual.md`, no mesmo
+  método sem-subagente validado na Fase 1. Detalhe em `.notas/readme-processo.md`.
+- Gate de decisões secundárias (§1.4 do base-factual.md): das candidatas D6+D25, D16,
+  D14/D18+D17, D21+D24, o usuário promoveu apenas **D16** a ADR próprio (`ADR-007` —
+  filtro de eventos aplicado na inserção da outbox, não no envio). As demais ficam só no
+  FDD (Fase 4).
+- Produzidos 7 ADRs em `docs/adrs/`: ADR-001 (outbox MySQL), ADR-002 (retry+DLQ),
+  ADR-003 (HMAC-SHA256 por endpoint), ADR-004 (at-least-once + X-Event-Id), ADR-005
+  (worker separado em polling), ADR-006 (reuso de padrões existentes — cita
+  `src/shared/errors/app-error.ts:3`, `src/shared/logger/index.ts:12`,
+  `src/middlewares/error.middleware.ts:14`, `src/modules/orders/order.repository.ts`),
+  ADR-007 (filtro na inserção da outbox). Todas as 6 decisões obrigatórias do enunciado
+  cobertas, mais essa uma secundária.
+- Verificação mecânica: todos os `[hh:mm]` citados nos 7 ADRs existem em
+  `TRANSCRICAO.md`; todos os caminhos de código citados existem no disco.
+- Linhas de tracker desta fase acumuladas em `.notas/tracker-parcial.md`.
