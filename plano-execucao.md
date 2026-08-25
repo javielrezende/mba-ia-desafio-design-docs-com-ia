@@ -14,7 +14,7 @@
 | 0 | Planejamento | ✅ concluída | `main` (working tree) | `plano-execucao.md` | — |
 | 1 | Exploração (código + transcrição) | ✅ concluída (PR aberto) | `fase-1/exploracao` | `.notas/base-factual.md` | [#1](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/1) |
 | 2 | ADRs | ✅ concluída (PR aberto) | `fase-2/adrs` | `docs/adrs/ADR-*.md` | [#3](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/3) |
-| 3 | RFC | ✅ concluída (aguardando push/PR) | `fase-3/rfc` | `docs/RFC.md` | — |
+| 3 | RFC | ✅ concluída (PR aberto) | `fase-3/rfc` | `docs/RFC.md` | [#4](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/4) |
 | 4 | FDD | ⬜ pendente | `fase-4/fdd` | `docs/FDD.md` | — |
 | 5 | PRD | ⬜ pendente | `fase-5/prd` | `docs/PRD.md` | — |
 | 6 | Tracker | ⬜ pendente | `fase-6/tracker` | `docs/TRACKER.md` | — |
@@ -25,9 +25,9 @@
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** Fase 3 (RFC) está escrita e commitada localmente em `fase-3/rfc`,
-aguardando confirmação para commitar (se ainda não commitado nesta sessão) e depois
-autorização explícita para `push` + abertura do PR contra `main`.
+**Próximo passo:** aguardar revisão e merge do [PR #4](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/4)
+pelo usuário. Depois do merge: `git checkout main && git pull --ff-only origin main`,
+e iniciar a Fase 4 (FDD) em uma sessão nova.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
