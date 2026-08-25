@@ -14,7 +14,7 @@
 | 0 | Planejamento | ✅ concluída | `main` (working tree) | `plano-execucao.md` | — |
 | 1 | Exploração (código + transcrição) | ✅ concluída (PR aberto) | `fase-1/exploracao` | `.notas/base-factual.md` | [#1](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/1) |
 | 2 | ADRs | ✅ concluída (PR aberto) | `fase-2/adrs` | `docs/adrs/ADR-*.md` | [#3](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/3) |
-| 3 | RFC | ⬜ pendente | `fase-3/rfc` | `docs/RFC.md` | — |
+| 3 | RFC | ✅ concluída (PR aberto) | `fase-3/rfc` | `docs/RFC.md` | [#4](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/4) |
 | 4 | FDD | ⬜ pendente | `fase-4/fdd` | `docs/FDD.md` | — |
 | 5 | PRD | ⬜ pendente | `fase-5/prd` | `docs/PRD.md` | — |
 | 6 | Tracker | ⬜ pendente | `fase-6/tracker` | `docs/TRACKER.md` | — |
@@ -25,9 +25,9 @@
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** aguardar revisão e merge do [PR #3](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/3)
+**Próximo passo:** aguardar revisão e merge do [PR #4](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/4)
 pelo usuário. Depois do merge: `git checkout main && git pull --ff-only origin main`,
-e iniciar a Fase 3 (RFC) em uma sessão nova.
+e iniciar a Fase 4 (FDD) em uma sessão nova.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
@@ -664,3 +664,20 @@ verificações de consistência global.
 - Verificação mecânica: todos os `[hh:mm]` citados nos 7 ADRs existem em
   `TRANSCRICAO.md`; todos os caminhos de código citados existem no disco.
 - Linhas de tracker desta fase acumuladas em `.notas/tracker-parcial.md`.
+
+### Fase 3 — RFC
+- Sem skill externa — mesmo formato-padrão fixado no plano (§Fase 3), plano do documento
+  apresentado e aprovado antes da escrita.
+- Autor do RFC definido como Diego (Eng. Sênior, Plataforma — proponente da maior parte
+  do desenho técnico na transcrição); revisores = os 5 participantes. Campo `Data` sem
+  data de calendário na transcrição — registrado explicitamente em vez de inventado
+  (`TRANSCRICAO.md:3` só traz "quinta-feira, 09:00"). Detalhe em `.notas/readme-processo.md`.
+- Produzido `docs/RFC.md`: TL;DR, contexto (R1/R2), proposta técnica (D2-D4, D7-D9, D11,
+  D15, D16), 4 alternativas descartadas com trade-off (DC1, DC2, DC3, DC6), 3 questões em
+  aberto (EA1, AD1, AD2), impacto e riscos (incluindo risco de cronograma, R12/D26), e
+  links para os 7 ADRs.
+- Verificação mecânica: os ~30 timestamps citados conferem contra `TRANSCRICAO.md`
+  (`grep`), `src/modules/orders/order.service.ts:126` confere no disco, os 7 links
+  relativos para `docs/adrs/*.md` resolvem. Sem retrabalho.
+- Linhas de tracker desta fase (`RFC-CTX`, `RFC-PROP`, `RFC-ALT`, `RFC-OPEN`, `RFC-RISK`)
+  acumuladas em `.notas/tracker-parcial.md`.
