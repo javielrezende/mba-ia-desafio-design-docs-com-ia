@@ -15,7 +15,7 @@
 | 1 | Exploração (código + transcrição) | ✅ concluída (PR aberto) | `fase-1/exploracao` | `.notas/base-factual.md` | [#1](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/1) |
 | 2 | ADRs | ✅ concluída (PR aberto) | `fase-2/adrs` | `docs/adrs/ADR-*.md` | [#3](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/3) |
 | 3 | RFC | ✅ concluída (PR aberto) | `fase-3/rfc` | `docs/RFC.md` | [#4](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/4) |
-| 4 | FDD | ⬜ pendente | `fase-4/fdd` | `docs/FDD.md` | — |
+| 4 | FDD | ✅ concluída | `fase-4/fdd` | `docs/FDD.md` | — |
 | 5 | PRD | ⬜ pendente | `fase-5/prd` | `docs/PRD.md` | — |
 | 6 | Tracker | ⬜ pendente | `fase-6/tracker` | `docs/TRACKER.md` | — |
 | 7 | README do processo | 🔄 contínua | — (entra na branch da fase corrente) | `README.md` | — |
@@ -25,9 +25,9 @@
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** aguardar revisão e merge do [PR #4](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/4)
-pelo usuário. Depois do merge: `git checkout main && git pull --ff-only origin main`,
-e iniciar a Fase 4 (FDD) em uma sessão nova.
+**Próximo passo:** fechar o commit/PR da Fase 4 (`fase-4/fdd`) e, após o merge do usuário,
+`git checkout main && git pull --ff-only origin main`, e iniciar a Fase 5 (PRD) em uma
+sessão nova.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
@@ -681,3 +681,35 @@ verificações de consistência global.
   relativos para `docs/adrs/*.md` resolvem. Sem retrabalho.
 - Linhas de tracker desta fase (`RFC-CTX`, `RFC-PROP`, `RFC-ALT`, `RFC-OPEN`, `RFC-RISK`)
   acumuladas em `.notas/tracker-parcial.md`.
+
+### Fase 4 — FDD
+- Skill desta fase: o usuário trouxe um subagente pronto
+  (`.claude/agents/fdd-architect-agent.md`) que conduz o FDD por entrevista sequencial.
+  Diferente da Fase 2 (onde os 3 subagentes de ADR foram descartados), este tinha bom
+  encaixe, mas a avaliação achou 3 gaps contra os critérios de fechamento desta fase:
+  faltava seção dedicada de integração com o sistema existente, a matriz de erros não
+  tinha coluna de código `WEBHOOK_*`, e o processo de entrevista não instruía ler
+  base-factual/ADRs/RFC/transcrição antes de perguntar. Adaptado antes de rodar (seção
+  11 nova, coluna de erro, bloco `<mandatory_sources>`) e commitado em `fase-4/fdd`
+  antes da entrevista (`def5619`). Detalhe completo em `.notas/readme-processo.md`.
+- Entrevista rodada em 11 etapas (via `Agent`/`SendMessage`, o orquestrador principal
+  repassando pergunta-resposta entre o subagente e o usuário), cada uma fechada com
+  resumo e confirmação explícita antes de avançar.
+- Achado real durante a entrevista (verificado no código, não hipótese): `redactPaths`
+  em `src/shared/logger/index.ts` não cobre o campo `secret` — vira invariante,
+  observabilidade e risco priorizado no FDD. Também confirmado que o projeto não tem
+  hoje infraestrutura de métricas nem tracing — essas duas subseções de Observabilidade
+  ficaram rotuladas como Hipótese (infra nova), Logs como reuso 1:1 do Pino existente.
+- Decisão de gate: EA1 (rate limiting, ficou em aberto na reunião) tratado como
+  explicitamente fora de escopo desta entrega, com risco documentado na seção 10 — não
+  virou seção própria de "questões em aberto" no FDD.
+- Critério adotado para os ~10 pontos "Hipótese" do documento (nomenclatura de rota,
+  condição de erro específica, etc.): toda Hipótese se ancora numa decisão/requisito
+  real já confirmado na transcrição, só o detalhe fino foi extrapolado e sempre
+  confirmado pelo usuário durante a entrevista — tratado como decisão de gate desta
+  sessão (mesmo padrão da promoção de D16 a ADR-007 na Fase 2), não como invenção.
+- Verificação mecânica ao fechar: os 8 caminhos de código da seção de Integração
+  existem no disco (`test -f`); todos os `[hh:mm]` citados no FDD existem em
+  `TRANSCRICAO.md` (`grep`); nada contradiz os 7 ADRs.
+- Linhas de tracker desta fase (`FDD-CONTRATO`, `FDD-ERRO`, `FDD-INT`) acumuladas em
+  `.notas/tracker-parcial.md`.
