@@ -16,7 +16,7 @@
 | 2 | ADRs | ✅ concluída (PR aberto) | `fase-2/adrs` | `docs/adrs/ADR-*.md` | [#3](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/3) |
 | 3 | RFC | ✅ concluída (PR aberto) | `fase-3/rfc` | `docs/RFC.md` | [#4](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/4) |
 | 4 | FDD | ✅ concluída (PR aberto) | `fase-4/fdd` | `docs/FDD.md` | [#5](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/5) |
-| 5 | PRD | ✅ concluída | `fase-5/prd` | `docs/PRD.md` | — |
+| 5 | PRD | ✅ concluída (PR aberto) | `fase-5/prd` | `docs/PRD.md` | [#6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6) |
 | 6 | Tracker | ⬜ pendente | `fase-6/tracker` | `docs/TRACKER.md` | — |
 | 7 | README do processo | 🔄 contínua | — (entra na branch da fase corrente) | `README.md` | — |
 | 8 | Revisão final | ⬜ pendente | `fase-8/revisao-final` | checklist validada | — |
@@ -25,8 +25,8 @@
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** Fase 5 fechada e commitada em `fase-5/prd`, aguardando autorização
-para push e abertura do PR. Depois do merge: `git checkout main && git pull --ff-only origin main`,
+**Próximo passo:** aguardar revisão e merge do [PR #6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6)
+pelo usuário. Depois do merge: `git checkout main && git pull --ff-only origin main`,
 e iniciar a Fase 6 (Tracker) em uma sessão nova.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
