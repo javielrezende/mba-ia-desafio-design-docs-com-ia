@@ -16,7 +16,7 @@
 | 2 | ADRs | ✅ concluída (PR aberto) | `fase-2/adrs` | `docs/adrs/ADR-*.md` | [#3](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/3) |
 | 3 | RFC | ✅ concluída (PR aberto) | `fase-3/rfc` | `docs/RFC.md` | [#4](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/4) |
 | 4 | FDD | ✅ concluída (PR aberto) | `fase-4/fdd` | `docs/FDD.md` | [#5](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/5) |
-| 5 | PRD | ⬜ pendente | `fase-5/prd` | `docs/PRD.md` | — |
+| 5 | PRD | ✅ concluída (PR aberto) | `fase-5/prd` | `docs/PRD.md` | [#6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6) |
 | 6 | Tracker | ⬜ pendente | `fase-6/tracker` | `docs/TRACKER.md` | — |
 | 7 | README do processo | 🔄 contínua | — (entra na branch da fase corrente) | `README.md` | — |
 | 8 | Revisão final | ⬜ pendente | `fase-8/revisao-final` | checklist validada | — |
@@ -25,9 +25,9 @@
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** aguardar revisão e merge do [PR #5](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/5)
+**Próximo passo:** aguardar revisão e merge do [PR #6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6)
 pelo usuário. Depois do merge: `git checkout main && git pull --ff-only origin main`,
-e iniciar a Fase 5 (PRD) em uma sessão nova.
+e iniciar a Fase 6 (Tracker) em uma sessão nova.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
@@ -713,3 +713,40 @@ verificações de consistência global.
   `TRANSCRICAO.md` (`grep`); nada contradiz os 7 ADRs.
 - Linhas de tracker desta fase (`FDD-CONTRATO`, `FDD-ERRO`, `FDD-INT`) acumuladas em
   `.notas/tracker-parcial.md`.
+
+### Fase 5 — PRD
+- Skill desta fase: o usuário trouxe `.claude/skills/generate-prd-for-feature/SKILL.md`,
+  que conduz o PRD por entrevista guiada em 11 etapas com esqueleto de saída fixo. Segunda
+  aplicação do padrão "avaliar antes de usar" (a primeira foi a Fase 4). O esqueleto cobria
+  as 12 seções do enunciado, mas a avaliação achou 3 gaps contra os critérios desta fase:
+  seção de arquitetura no esqueleto (fere a fronteira PRD/RFC e o critério "linguagem de
+  negócio"), "Defaults Inteligentes" mandando preencher números com padrão de mercado
+  (fere zero invenção e a Fase 6), e ausência de instrução para ler as fontes já
+  produzidas antes de entrevistar. Adaptada em 8 pontos e commitada antes da entrevista
+  (`10b0f56`). Detalhe completo em `.notas/readme-processo.md`.
+- Decisão do usuário no gate de adaptação: remover a seção "Arquitetura e abordagem" do
+  esqueleto (em vez de mantê-la enxuta), deixando o PRD exatamente com as 12 seções do
+  enunciado.
+- Entrevista rodada nas 11 etapas, conduzida diretamente (a skill carrega no contexto do
+  orquestrador, diferente do subagente da Fase 4, que exigia `Agent`/`SendMessage`).
+- Caso concreto de zero invenção nesta fase: a reunião não tem nenhuma menção a uptime. Em
+  vez de aceitar o default de 99,9% da skill, a lacuna foi levada ao usuário e o documento
+  declara explicitamente que a meta não foi definida, descrevendo no lugar as duas
+  garantias realmente decididas (`[09:40]`-`[09:41]` e `[09:17]`).
+- Produzido `docs/PRD.md` (463 linhas): 5 objetivos com meta, 6 itens fora de escopo,
+  10 requisitos funcionais (`PRD-FR-01` a `PRD-FR-10`), 17 pontos de requisito não
+  funcional em 8 categorias, 6 decisões com trade-off, 6 dependências, 7 riscos com
+  contingência, 14 critérios de aceitação e 5 tipos de teste.
+- Apenas 2 Hipóteses no documento inteiro, ambas em testes (ensaio de rajada e piloto com
+  cliente), ambas ancoradas em risco ou compromisso real e escolhidas pelo usuário.
+  Compliance e acessibilidade ficaram registradas como não discutidas na reunião, em vez
+  de omitidas ou preenchidas com texto genérico.
+- Export do PRD em JSON, oferecido pela skill: recusado pelo usuário, para não manter dois
+  artefatos com o mesmo conteúdo em sincronia.
+- Verificação mecânica ao fechar: 46 timestamps distintos e 254 pares de timestamp/falante
+  conferidos contra `TRANSCRICAO.md` sem divergência; os 5 caminhos de arquivo citados
+  existem no disco; varredura por termos de fronteira (`WEBHOOK_`, tabelas, headers,
+  verbos HTTP, `outbox`, `polling`, nomes de tecnologia) sem nenhuma ocorrência no PRD.
+- 61 linhas de tracker desta fase acumuladas em `.notas/tracker-parcial.md`
+  (`PRD-OBJ`, `PRD-ESC`, `PRD-FR`, `PRD-NFR`, `PRD-DEC`, `PRD-DEP`, `PRD-RISCO`,
+  `PRD-AC`, `PRD-TESTE`), todas com localização validada.
