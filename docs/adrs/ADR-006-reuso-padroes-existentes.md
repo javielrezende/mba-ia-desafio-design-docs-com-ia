@@ -12,7 +12,7 @@ reaproveitar a hierarquia existente — a classe `AppError` (`src/shared/errors/
 subclasses específicas como `InsufficientStockError` e `InvalidStatusTransitionError` — usando o
 prefixo `WEBHOOK_` nos novos códigos de erro (`WEBHOOK_NOT_FOUND`, `WEBHOOK_INVALID_URL`,
 `WEBHOOK_SECRET_REQUIRED`), no mesmo padrão dos códigos já existentes `[09:28]`–`[09:29]`. Confirma
-também que o logger Pino (`src/shared/logger/index.ts:12`) e o middleware de erro central
+também que o logger Pino (`src/shared/logger/index.ts:32`) e o middleware de erro central
 (`src/middlewares/error.middleware.ts:14`, que já trata `AppError`, `ZodError` e erros do Prisma)
 cobrem o módulo novo sem qualquer alteração `[09:29]`.
 
