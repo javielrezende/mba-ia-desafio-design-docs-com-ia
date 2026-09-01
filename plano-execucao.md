@@ -17,7 +17,7 @@
 | 3 | RFC | ✅ concluída (PR aberto) | `fase-3/rfc` | `docs/RFC.md` | [#4](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/4) |
 | 4 | FDD | ✅ concluída (PR aberto) | `fase-4/fdd` | `docs/FDD.md` | [#5](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/5) |
 | 5 | PRD | ✅ concluída (PR aberto) | `fase-5/prd` | `docs/PRD.md` | [#6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6) |
-| 6 | Tracker | ⬜ pendente | `fase-6/tracker` | `docs/TRACKER.md` | — |
+| 6 | Tracker | ✅ concluída | `fase-6/tracker` | `docs/TRACKER.md` | — |
 | 7 | README do processo | 🔄 contínua | — (entra na branch da fase corrente) | `README.md` | — |
 | 8 | Revisão final | ⬜ pendente | `fase-8/revisao-final` | checklist validada | — |
 
@@ -25,9 +25,10 @@
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** aguardar revisão e merge do [PR #6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6)
-pelo usuário. Depois do merge: `git checkout main && git pull --ff-only origin main`,
-e iniciar a Fase 6 (Tracker) em uma sessão nova.
+**Próximo passo:** Fase 6 fechada e commitada em `fase-6/tracker`; aguardar autorização
+para push e abertura do PR. Depois do merge: `git checkout main && git pull --ff-only origin main`,
+e iniciar a Fase 8 (Revisão final) em uma sessão nova — a Fase 7 (README) é contínua e seu
+rascunho já acumulou as notas das fases 1 a 6.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
@@ -750,3 +751,33 @@ verificações de consistência global.
 - 61 linhas de tracker desta fase acumuladas em `.notas/tracker-parcial.md`
   (`PRD-OBJ`, `PRD-ESC`, `PRD-FR`, `PRD-NFR`, `PRD-DEC`, `PRD-DEP`, `PRD-RISCO`,
   `PRD-AC`, `PRD-TESTE`), todas com localização validada.
+
+### Fase 6 — Tracker
+- Sem skill externa — método direto de consolidação + varredura, o mesmo das Fases 1, 2, 3 e 5.
+- Produzido `docs/TRACKER.md` com **229 linhas** no formato exigido
+  (`| ID | Documento | Tipo | Conteúdo (resumo) | Fonte | Localização |`), organizadas em
+  quatro seções: PRD (81), RFC (23), FDD (109) e ADRs (16). 197 linhas com
+  `Fonte = TRANSCRICAO` (86,0%) e 32 com `Fonte = CODIGO` (14,0%).
+- A varredura documento a documento levou o acumulado de `.notas/tracker-parcial.md` de 111
+  para 229 linhas. O delta de 118 não é conteúdo novo: é item que já estava escrito e não
+  tinha sido anotado na hora. O FDD foi o mais subcoberto (24 linhas anotadas contra 109
+  itens reais) — as seções 1, 2, 3, 4, 7, 8, 9 e 10 estavam sem nenhuma linha.
+- Achado real da varredura, corrigido no documento de origem e não maquiado no tracker
+  (é exatamente o mecanismo que a Fase 6 existe para acionar): `ADR-006` citava
+  `src/shared/logger/index.ts:12`, e a linha 12 do arquivo é vazia — o `redactPaths` está
+  em 4–11 e o `logger` exportado, que é o reusado, na 32. Corrigido para `:32` no ADR e no
+  tracker, em commit `fix(adr)` próprio.
+- Gate de granularidade (decisão do usuário): (a) ADRs entram só com as decisões, porque as
+  alternativas descartadas já estão rastreadas em `RFC-ALT-01..04` e `FDD-EXC-01..11` com a
+  mesma origem; (b) as 11 exclusões do FDD ganham linha 1:1, mesmo repetindo itens de
+  `RFC-ALT` e `PRD-ESC`, porque a cobertura é medida documento a documento.
+- Duas linhas de requisito não funcional do PRD registram ausência de discussão na reunião
+  (compliance e acessibilidade). Não têm `Localização` e por isso não viraram linha; o fato
+  está declarado na seção "Como ler" do tracker, em vez de omitido ou preenchido.
+- Verificação mecânica ao fechar: 45 timestamps distintos existem em `TRANSCRICAO.md`;
+  306 pares de timestamp/falante conferidos (o nome citado precisa ter falado dentro da faixa
+  indicada); 14 caminhos de arquivo e 10 caminhos da coluna `Documento` existem no disco; as
+  4 citações com número de linha apontam para o código afirmado; nenhuma linha fora das 6
+  colunas, nenhuma `Localização` vazia, nenhum ID duplicado. Zero divergência.
+- `.notas/tracker-parcial.md` encerrado com uma nota de consolidação; a referência viva passa
+  a ser `docs/TRACKER.md`.
