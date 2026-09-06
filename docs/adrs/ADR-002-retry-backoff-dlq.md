@@ -1,6 +1,8 @@
 # ADR-002: Política de retry com backoff exponencial e DLQ
 
-**Status:** Aceito
+## Status
+
+Aceito
 
 ## Contexto
 

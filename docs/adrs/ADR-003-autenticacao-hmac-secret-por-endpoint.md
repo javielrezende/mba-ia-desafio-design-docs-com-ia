@@ -1,6 +1,8 @@
 # ADR-003: Autenticação HMAC-SHA256 com secret por endpoint
 
-**Status:** Aceito
+## Status
+
+Aceito
 
 ## Contexto
 

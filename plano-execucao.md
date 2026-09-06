@@ -18,17 +18,17 @@
 | 4 | FDD | ✅ concluída (PR aberto) | `fase-4/fdd` | `docs/FDD.md` | [#5](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/5) |
 | 5 | PRD | ✅ concluída (PR aberto) | `fase-5/prd` | `docs/PRD.md` | [#6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6) |
 | 6 | Tracker | ✅ concluída (PR aberto) | `fase-6/tracker` | `docs/TRACKER.md` | [#7](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/7) |
-| 7 | README do processo | 🔄 contínua | — (entra na branch da fase corrente) | `README.md` | — |
-| 8 | Revisão final | ⬜ pendente | `fase-8/revisao-final` | checklist validada | — |
+| 7 | README do processo | ✅ consolidada na Fase 8 | `fase-8/revisao-final` | `README.md` | (junto da Fase 8) |
+| 8 | Revisão final | ✅ concluída (PR aberto) | `fase-8/revisao-final` | checklist validada + `README.md` | [#8](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/8) |
 
 > A Fase 1 não altera arquivos versionados (a saída vai para `.notas/`, que é auto-ignorado).
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** aguardar revisão e merge do [PR #7](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/7)
-pelo usuário. Depois do merge: `git checkout main && git pull --ff-only origin main`,
-e iniciar a Fase 8 (Revisão final) em uma sessão nova — a Fase 7 (README) é contínua e seu
-rascunho já acumulou as notas das fases 1 a 6.
+**Próximo passo:** a Fase 8 fechou o pacote — checklist do enunciado validada item a item,
+verificação mecânica sem divergência, quatro ajustes aplicados e `README.md` consolidado.
+Falta apenas o commit, o push e a abertura do PR da fase (ambos sob autorização explícita),
+e depois o merge em `main`. Com esse merge, a entrega está completa.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
@@ -781,3 +781,36 @@ verificações de consistência global.
   colunas, nenhuma `Localização` vazia, nenhum ID duplicado. Zero divergência.
 - `.notas/tracker-parcial.md` encerrado com uma nota de consolidação; a referência viva passa
   a ser `docs/TRACKER.md`.
+
+### Fases 7 e 8 — README do processo e revisão final
+- Sem skill externa (decisão do usuário no gate de abertura); ordem escolhida: verificar o
+  pacote inteiro primeiro, corrigir o que aparecesse, e só então escrever o `README.md` — para
+  que o README descrevesse o pacote final, não um estado intermediário.
+- **Checklist do enunciado validada item a item**, com evidência (arquivo + seção) para cada
+  critério de PRD, RFC, FDD, ADRs, Tracker e consistência geral. Todos passam.
+- **Verificação mecânica** (scripts Python + `grep`, sem depender de releitura da IA): 48
+  timestamps distintos, todos existentes na transcrição; **309 pares nome↔faixa de tempo em
+  prosa, zero inválidos**; 229 linhas de tracker reparseadas, nenhuma fora de formato; **22
+  citações entre aspas conferidas literalmente** contra o texto da reunião (checagem nova
+  desta fase); todos os caminhos de código conferidos no disco; 37 links relativos resolvem.
+- **Auditoria de git:** `git diff` do commit base do fork até `main`, restrito a `src/`,
+  `prisma/`, `tests/` e `TRANSCRICAO.md`, é vazio; `main` avançou por 7 merges de PR e nenhum
+  commit direto; os 7 PRs têm base `javielrezende/...` → `main` (confirmado via API), nenhum
+  apontou para `devfullcycle/...`.
+- **Quatro ajustes decididos nos gates desta fase:** (1) `Status` promovido a seção `## Status`
+  nos 7 ADRs, para casar literalmente com a redação do critério; (2) as duas menções a
+  `HMAC-SHA256` no PRD abstraídas para linguagem de negócio — o PRD não tem mais nenhum nome
+  de tecnologia, e a linha `PRD-NFR-07` do tracker acompanhou; (3) `src/worker.ts` e
+  `src/modules/webhooks` marcados como artefatos a criar na primeira menção de cada documento,
+  protegendo o critério literal "nenhum arquivo de código mencionado é inexistente"; (4)
+  `docs/adrs/README.md`, herdado do repositório base, virou índice real dos 7 ADRs — ainda
+  mandava nomeá-los como `0001-titulo-da-decisao.md`.
+- **`README.md` consolidado** a partir de `.notas/readme-processo.md`, com as 6 seções
+  obrigatórias: Sobre o desafio (dois parágrafos aprovados pelo usuário), Ferramentas de IA
+  (6 linhas, incluindo as três descartadas com o motivo), Workflow adotado (tabela das 8 fases
+  com PR), Prompts customizados (2 blocos escolhidos pelo usuário entre 4 candidatos:
+  extração da transcrição da Fase 1 e inicialização do subagente do FDD da Fase 4),
+  Iterações e ajustes (5 casos concretos) e Como navegar a entrega (ordem de leitura).
+- Ponto avaliado e deliberadamente não alterado: o tracker repete o ID `ADR-NNN` em linhas
+  diferentes do mesmo ADR. A seção "Como ler" do tracker já declara essa convenção e o
+  enunciado usa `ADR-002` como exemplo de ID.

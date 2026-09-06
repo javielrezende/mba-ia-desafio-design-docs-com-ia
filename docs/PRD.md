@@ -263,7 +263,7 @@ Cada notificação é assinada, para o cliente confirmar que veio da nossa plata
 - O cliente recalcula a assinatura do seu lado com a mesma secret e compara antes de processar o conteúdo (`[09:19]`-`[09:20]` Sofia).
 
 **Fluxos alternativos e exceções**
-- A assinatura usa HMAC-SHA256, escolhido por ser padrão de mercado com biblioteca disponível em qualquer stack de cliente (`[09:20]` Sofia).
+- A assinatura usa um algoritmo criptográfico padrão de mercado, escolhido por ter biblioteca disponível em qualquer stack de cliente (`[09:20]` Sofia).
 - Cada endpoint tem secret própria, de forma que o vazamento de uma não comprometa os demais webhooks (`[09:21]` Sofia).
 - O envio inclui a identificação do cadastro de webhook usado, para o cliente que mantém vários saber qual deles originou aquela chamada (`[09:44]` Sofia).
 
@@ -288,7 +288,7 @@ Disponibilidade
 - Indisponibilidade do sistema do cliente é tolerada por aproximadamente 15 horas antes de a entrega ir para a fila de falhas (`[09:17]` Diego).
 
 Segurança e autorização
-- Todo envio é assinado com HMAC-SHA256 sobre o conteúdo enviado (`[09:20]` Sofia).
+- Todo envio é assinado criptograficamente sobre o conteúdo enviado, com a secret daquele webhook (`[09:20]` Sofia).
 - Cada webhook tem secret exclusiva, nunca uma secret única compartilhada por toda a plataforma (`[09:21]` Sofia).
 - Secret rotacionável sob demanda, com 24 horas de convivência entre a anterior e a nova (`[09:21]` Sofia).
 - URL de webhook obrigatoriamente https, com cadastro em http recusado por validação (`[09:23]` Sofia).

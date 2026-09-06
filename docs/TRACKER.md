@@ -81,7 +81,7 @@ Duas exceções conscientes, para não inflar a tabela com linhas redundantes ou
 | PRD-NFR-04 | docs/PRD.md | Requisito Não Funcional | Tamanho máximo de 64KB por evento, sem truncar | TRANSCRICAO | `[09:23]`–`[09:24]` Sofia, Diego, Larissa |
 | PRD-NFR-05 | docs/PRD.md | Requisito Não Funcional | Sem meta de uptime definida; evento pendente não se perde | TRANSCRICAO | `[09:40]`–`[09:41]` Bruno, Diego |
 | PRD-NFR-06 | docs/PRD.md | Requisito Não Funcional | Indisponibilidade do cliente tolerada por ~15h | TRANSCRICAO | `[09:17]` Diego |
-| PRD-NFR-07 | docs/PRD.md | Requisito Não Funcional | Assinatura HMAC-SHA256 sobre o conteúdo enviado | TRANSCRICAO | `[09:20]` Sofia |
+| PRD-NFR-07 | docs/PRD.md | Requisito Não Funcional | Assinatura criptográfica padrão de mercado sobre o conteúdo enviado | TRANSCRICAO | `[09:20]` Sofia |
 | PRD-NFR-08 | docs/PRD.md | Requisito Não Funcional | Secret exclusiva por webhook, rotacionável com 24h de convivência | TRANSCRICAO | `[09:21]` Sofia |
 | PRD-NFR-09 | docs/PRD.md | Requisito Não Funcional | URL obrigatoriamente https, http recusado por validação | TRANSCRICAO | `[09:23]` Sofia |
 | PRD-NFR-10 | docs/PRD.md | Requisito Não Funcional | CRUD para qualquer role autenticada; reprocessamento só para ADMIN | TRANSCRICAO | `[09:36]`–`[09:37]` Sofia, Marcos |

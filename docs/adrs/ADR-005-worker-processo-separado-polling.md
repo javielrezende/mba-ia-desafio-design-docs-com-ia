@@ -1,6 +1,8 @@
 # ADR-005: Worker em processo separado, com polling
 
-**Status:** Aceito
+## Status
+
+Aceito
 
 ## Contexto
 
@@ -13,7 +15,7 @@ o que ele descreve como "esquisito" `[09:09]`. O polling de 2 segundos atende fo
 requisito de latência abaixo de 10 segundos definido por Marcos em `[09:02]`.
 
 Diego reforça, em `[09:11]`, que o worker precisa rodar como processo separado da API — "Senão se
-a API reinicia, perde o worker". Larissa propõe um entry-point dedicado (`src/worker.ts`, script
+a API reinicia, perde o worker". Larissa propõe um entry-point dedicado, a ser criado (`src/worker.ts`, script
 `npm run worker`), no mesmo padrão de `src/server.ts` `[09:11]`. Bruno e Diego confirmam que o
 worker conecta ao mesmo banco, mas precisa de seu próprio `PrismaClient` — "só não pode ser o
 mesmo processo" `[09:11]`.
