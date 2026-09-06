@@ -1,6 +1,8 @@
 # ADR-004: Garantia at-least-once com X-Event-Id para deduplicação
 
-**Status:** Aceito
+## Status
+
+Aceito
 
 ## Contexto
 

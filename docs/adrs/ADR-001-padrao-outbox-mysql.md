@@ -1,6 +1,8 @@
 # ADR-001: Padrão Outbox no MySQL para entrega de eventos de webhook
 
-**Status:** Aceito
+## Status
+
+Aceito
 
 ## Contexto
 

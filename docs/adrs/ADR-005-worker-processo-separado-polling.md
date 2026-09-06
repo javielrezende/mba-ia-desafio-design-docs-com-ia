@@ -1,6 +1,8 @@
 # ADR-005: Worker em processo separado, com polling
 
-**Status:** Aceito
+## Status
+
+Aceito
 
 ## Contexto
 

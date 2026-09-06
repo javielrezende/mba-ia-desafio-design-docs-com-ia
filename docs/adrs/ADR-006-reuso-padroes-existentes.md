@@ -1,6 +1,8 @@
 # ADR-006: Reuso dos padrões existentes do projeto no módulo de webhooks
 
-**Status:** Aceito
+## Status
+
+Aceito
 
 ## Contexto
 

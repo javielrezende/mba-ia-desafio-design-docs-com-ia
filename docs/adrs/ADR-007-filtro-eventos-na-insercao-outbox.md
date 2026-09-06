@@ -1,6 +1,8 @@
 # ADR-007: Filtro de eventos aplicado na inserção da outbox
 
-**Status:** Aceito
+## Status
+
+Aceito
 
 ## Contexto
 
