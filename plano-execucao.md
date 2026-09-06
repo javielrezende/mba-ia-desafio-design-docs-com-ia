@@ -20,7 +20,7 @@
 | 6 | Tracker | ✅ concluída (PR aberto) | `fase-6/tracker` | `docs/TRACKER.md` | [#7](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/7) |
 | 7 | README do processo | ✅ consolidada na Fase 8 | `fase-8/revisao-final` | `README.md` | (junto da Fase 8) |
 | 8 | Revisão final | ✅ concluída e mergeada | `fase-8/revisao-final` | checklist validada + `README.md` | [#8](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/8) |
-| — | Correção pós-entrega | ✅ concluída (PR aberto) | `fix/prd-secoes-obrigatorias` | seções obrigatórias e níveis de cabeçalho no PRD/FDD | (a abrir) |
+| — | Correção pós-entrega | ✅ concluída (PR aberto) | `fix/prd-secoes-obrigatorias` | seções obrigatórias e níveis de cabeçalho no PRD/FDD | [#9](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/9) |
 
 > A Fase 1 não altera arquivos versionados (a saída vai para `.notas/`, que é auto-ignorado).
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
@@ -28,8 +28,8 @@
 
 **Próximo passo:** as oito fases estão fechadas e mergeadas em `main` (PR #8 mergeado em
 2026-09-06). Uma revalidação completa posterior encontrou dois pontos estruturais no PRD, hoje
-corrigidos na branch `fix/prd-secoes-obrigatorias` — falta o push e a abertura do PR dessa
-correção (sob autorização explícita) e o merge em `main`.
+corrigidos na branch `fix/prd-secoes-obrigatorias` e enviados no PR #9. Falta apenas o merge
+em `main`. Com esse merge, a entrega está completa.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
