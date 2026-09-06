@@ -70,7 +70,7 @@ de um chute inicial que os outros documentos teriam que contradizer depois.
 | 5 — PRD | [`docs/PRD.md`](./docs/PRD.md) | [#6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6) |
 | 6 — Tracker | [`docs/TRACKER.md`](./docs/TRACKER.md) | [#7](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/7) |
 | 7 — README do processo | Este arquivo — alimentado a cada fase, consolidado na fase 8 | — |
-| 8 — Revisão final | Checklist validada item a item + verificação mecânica | _este PR_ |
+| 8 — Revisão final | Checklist validada item a item + verificação mecânica + este `README.md` | [#8](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/8) |
 
 *(a correção pontual do [PR #2](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/2)
 entrou fora da numeração das fases)*

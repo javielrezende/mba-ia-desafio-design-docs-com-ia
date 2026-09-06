@@ -19,7 +19,7 @@
 | 5 | PRD | ✅ concluída (PR aberto) | `fase-5/prd` | `docs/PRD.md` | [#6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6) |
 | 6 | Tracker | ✅ concluída (PR aberto) | `fase-6/tracker` | `docs/TRACKER.md` | [#7](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/7) |
 | 7 | README do processo | ✅ consolidada na Fase 8 | `fase-8/revisao-final` | `README.md` | (junto da Fase 8) |
-| 8 | Revisão final | ✅ concluída | `fase-8/revisao-final` | checklist validada + `README.md` | — |
+| 8 | Revisão final | ✅ concluída (PR aberto) | `fase-8/revisao-final` | checklist validada + `README.md` | [#8](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/8) |
 
 > A Fase 1 não altera arquivos versionados (a saída vai para `.notas/`, que é auto-ignorado).
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
