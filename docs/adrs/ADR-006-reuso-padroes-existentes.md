@@ -31,7 +31,7 @@ repository inteiro" `[09:41]`–`[09:42]`.
 
 ## Decisão
 
-O módulo `src/modules/webhooks` segue exatamente o padrão dos módulos existentes
+O novo módulo `src/modules/webhooks`, a ser criado, segue exatamente o padrão dos módulos existentes
 (`controller`/`service`/`repository`/`routes`/`schemas`). Os erros do módulo herdam de `AppError`
 com prefixo `WEBHOOK_` nos códigos. O logger Pino e o middleware de erro central são reaproveitados
 sem alteração. A integração com `order.service.ts` acontece por meio de uma função

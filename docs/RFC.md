@@ -37,7 +37,7 @@ Visão geral da arquitetura, sem detalhe de payload, schema ou contrato — isso
   Propomos inserir o evento de webhook numa tabela `webhook_outbox` dentro dessa mesma
   transação, para que a notificação nunca fique dessincronizada do estado real do pedido
   (Diego, `[09:06]`-`[09:08]`; commit garantido junto com o resto — Bruno/Diego, `[09:40]`-`[09:41]`).
-- **Worker separado, em polling.** Um processo Node independente (`src/worker.ts`), com seu
+- **Worker separado, em polling.** Um processo Node independente (`src/worker.ts`, arquivo novo, a criar), com seu
   próprio `PrismaClient`, varre a outbox a cada 2 segundos e processa os eventos pendentes
   (Diego/Larissa, `[09:09]`-`[09:11]`; Bruno, `[09:29]`-`[09:30]`).
 - **Retry com backoff e DLQ.** Falhas de envio (timeout, erro HTTP) são reagendadas com backoff
