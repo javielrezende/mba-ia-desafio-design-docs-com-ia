@@ -1,4 +1,4 @@
-### FDD: Sistema de Webhooks de Notificação de Pedidos
+# FDD: Sistema de Webhooks de Notificação de Pedidos
 
 **Versão:** 1.0
 **Data:** 2026-08-25
@@ -6,7 +6,7 @@
 
 ---
 
-### 1. Contexto e motivação técnica
+## 1. Contexto e motivação técnica
 
 O problema técnico real que esta feature resolve é o acoplamento ineficiente por polling: clientes B2B (Atlas Comercial, MaxDistribuição, Nova Cargo) hoje descobrem mudanças de status de pedido consultando repetidamente `GET /orders`, o que é ineficiente para os dois lados e não atende a expectativa de "tempo real" definida como latência abaixo de 10 segundos (R1, R2; `[09:00]`-`[09:02]` Marcos). Junto a isso, há a necessidade de garantia de entrega/idempotência (o cliente precisa conseguir confiar que recebeu o evento, mesmo diante de falhas transitórias) e de rastreabilidade das tentativas de notificação (histórico de entregas, motivo de falhas).
 
@@ -29,7 +29,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 2. Objetivos técnicos
+## 2. Objetivos técnicos
 
 * Latência de entrega abaixo de 10s no caso normal, com pior caso dominado pelo intervalo de polling de 2s do worker (medida: R2; D3; `[09:02]`, `[09:09]`-`[09:10]`).
 * Atomicidade garantida: se a transação de `changeStatus` commitar, o evento existe na outbox (quando há webhook interessado); se ela sofrer rollback, o evento não existe (invariante: D19; ADR-001).
@@ -41,7 +41,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 3. Escopo e exclusões
+## 3. Escopo e exclusões
 
 **Incluído**
 * CRUD de configuração de webhook: `POST`, `PATCH`, `DELETE`, `GET` por customer (D15; R3, R4).
@@ -67,7 +67,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 4. Fluxos detalhados e diagramas
+## 4. Fluxos detalhados e diagramas
 
 **Fluxo principal**
 1. Uma operação de negócio dispara `OrderService.changeStatus` (`src/modules/orders/order.service.ts:126-179`), abrindo uma transação Prisma única (`this.prisma.$transaction`).
@@ -94,7 +94,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 5. Contratos públicos (assinaturas, endpoints, headers, exemplos)
+## 5. Contratos públicos (assinaturas, endpoints, headers, exemplos)
 
 **1. Cadastrar webhook**
 * **Tipo:** http_endpoint
@@ -354,7 +354,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 6. Erros, exceções e fallback
+## 6. Erros, exceções e fallback
 
 **Matriz de erros previstos e tratamentos**
 | Código | Condição | Tratamento | Notas |
@@ -379,7 +379,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 7. Observabilidade
+## 7. Observabilidade
 
 **Métricas** (candidatas, infraestrutura nova - Hipótese, não há Prometheus/OpenTelemetry no projeto hoje)
 * `webhook_outbox_pending_count` (gauge) - eventos pendentes na outbox, monitora acúmulo/backlog do worker.
@@ -404,7 +404,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 8. Dependências e compatibilidade
+## 8. Dependências e compatibilidade
 
 | Componente | Versão mínima | Observações |
 | :--- | :--- | :--- |
@@ -423,7 +423,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 9. Critérios de aceite técnicos
+## 9. Critérios de aceite técnicos
 
 * CRUD completo (`POST/PATCH/DELETE/GET`) funcional; `secret` retornada apenas na criação e na rotação, nunca em listagem/edição (R3, R4, R10).
 * Filtro de eventos aplicado na inserção: mudança de status sem nenhum webhook interessado não gera linha na outbox (D16; ADR-007).
@@ -446,7 +446,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 10. Riscos e mitigação
+## 10. Riscos e mitigação
 
 **Rajada de envios sem rate limiting**
 * **Probabilidade:** média
@@ -505,7 +505,7 @@ O escopo é estritamente *outbound*: a API só envia notificações para o clien
 
 ---
 
-### 11. Integração com o sistema existente
+## 11. Integração com o sistema existente
 
 | Caminho do arquivo | Como a feature se integra |
 | :--- | :--- |
