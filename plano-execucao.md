@@ -19,16 +19,17 @@
 | 5 | PRD | ✅ concluída (PR aberto) | `fase-5/prd` | `docs/PRD.md` | [#6](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/6) |
 | 6 | Tracker | ✅ concluída (PR aberto) | `fase-6/tracker` | `docs/TRACKER.md` | [#7](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/7) |
 | 7 | README do processo | ✅ consolidada na Fase 8 | `fase-8/revisao-final` | `README.md` | (junto da Fase 8) |
-| 8 | Revisão final | ✅ concluída (PR aberto) | `fase-8/revisao-final` | checklist validada + `README.md` | [#8](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/8) |
+| 8 | Revisão final | ✅ concluída e mergeada | `fase-8/revisao-final` | checklist validada + `README.md` | [#8](https://github.com/javielrezende/mba-ia-desafio-design-docs-com-ia/pull/8) |
+| — | Correção pós-entrega | ✅ concluída (PR aberto) | `fix/prd-secoes-obrigatorias` | seções obrigatórias e níveis de cabeçalho no PRD/FDD | (a abrir) |
 
 > A Fase 1 não altera arquivos versionados (a saída vai para `.notas/`, que é auto-ignorado).
 > Ela ainda assim ganha branch e PR, para carregar o commit do `plano-execucao.md` e manter
 > o histórico do processo — é justamente esse rastro que alimenta o README da Fase 7.
 
-**Próximo passo:** a Fase 8 fechou o pacote — checklist do enunciado validada item a item,
-verificação mecânica sem divergência, quatro ajustes aplicados e `README.md` consolidado.
-Falta apenas o commit, o push e a abertura do PR da fase (ambos sob autorização explícita),
-e depois o merge em `main`. Com esse merge, a entrega está completa.
+**Próximo passo:** as oito fases estão fechadas e mergeadas em `main` (PR #8 mergeado em
+2026-09-06). Uma revalidação completa posterior encontrou dois pontos estruturais no PRD, hoje
+corrigidos na branch `fix/prd-secoes-obrigatorias` — falta o push e a abertura do PR dessa
+correção (sob autorização explícita) e o merge em `main`.
 
 **Pré-requisito da Fase 1 — resolvido:** servidor `github` do MCP promovido a escopo
 `user` nesta sessão (reaproveitando o PAT já existente em `mba-ia-desafio-refactor-projects-skill`),
@@ -814,3 +815,25 @@ verificações de consistência global.
 - Ponto avaliado e deliberadamente não alterado: o tracker repete o ID `ADR-NNN` em linhas
   diferentes do mesmo ADR. A seção "Como ler" do tracker já declara essa convenção e o
   enunciado usa `ADR-002` como exemplo de ID.
+
+### Correção pós-entrega — seções obrigatórias e cabeçalhos do PRD (`fix/prd-secoes-obrigatorias`)
+- Revalidação completa do pacote contra o enunciado, feita depois do merge do PR #8, em sessão
+  limpa: 48 timestamps conferidos contra `TRANSCRICAO.md`, 34 caminhos de código conferidos no
+  disco, 37 links relativos resolvidos, tracker reparseado (197 `TRANSCRICAO` / 32 `CODIGO`),
+  contagens de RF, riscos, endpoints, ADRs e prompts, auditoria de git e varredura confirmando
+  que nenhum item descartado ou adiado na reunião aparece como requisito. Todos os critérios de
+  aceite passam.
+- **Dois achados estruturais**, ambos no PRD e nenhum de conteúdo:
+  1. `Problema e motivação` e `Público-alvo e cenários de uso` — duas das 12 seções obrigatórias
+     do enunciado — existiam como conteúdo, mas dentro de `Contexto e problema` e em linhas de
+     texto puro, sem cabeçalho e sem ênfase. Quem conferisse a checklist procurando seção não as
+     encontrava. Promovidas a seções próprias, na ordem do enunciado.
+  2. `docs/PRD.md` e `docs/FDD.md` abriam em `###` e usavam `###` também para as seções: título e
+     seção no mesmo nível, sem hierarquia, diferente de `RFC.md` e `TRACKER.md`. Herança dos
+     templates da skill da Fase 5 e do subagente da Fase 4. Normalizados para `#`/`##`/`###`
+     (42 e 11 cabeçalhos), e os quatro rótulos que sobravam soltos como parágrafo no PRD viraram
+     negrito, no padrão que o FDD já usava.
+- Verificado por diff que nenhuma linha de conteúdo mudou: só ordem, nível de cabeçalho e ênfase.
+  Revalidação mecânica repetida depois da mudança, sem divergência.
+- Correção pontual pós-fase, então segue a convenção de branch `fix/<slug>` já usada em
+  `fix/gate-confirmar-commit` (Fase 1) e no `fix(adr)` da Fase 6.
